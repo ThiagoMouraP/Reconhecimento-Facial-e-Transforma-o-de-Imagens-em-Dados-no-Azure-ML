@@ -1,4 +1,4 @@
-# Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/75a919c5-ee5d-4573-8e8d-aa04ca303b55)# Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML
 Projeto da DIO
 
 Detectar rostos no Vision Studio
@@ -142,7 +142,121 @@ Limpar
 
 Se não pretende fazer mais exercícios, exclua todos os recursos que não precisa mais. Isso evita acumular custos desnecessários.
 
+
+
+
+Analise imagens no Vision Studio
+
+O **Azure AI Vision** inclui inúmeras capacidades para compreender o conteúdo e o contexto da imagem e extrair informações das imagens. O Azure AI Vision Studio permite-lhe experimentar muitas das capacidades de análise de imagens.
+
+Neste exercício, você usará o Vision Studio para analisar imagens usando as experiências de teste integradas. Suponhamos que o retalhista fictício Northwind Traders tenha decidido implementar uma “loja inteligente”, na qual os serviços de IA monitorizam a loja para identificar os clientes que necessitam de assistência e direcionam os funcionários para os ajudar. Ao utilizar o Azure AI Vision, as imagens captadas por câmaras em toda a loja podem ser analisadas para fornecer descrições significativas do que representam.
+
+Crie um recurso de serviços de IA do Azure
+
+Você pode usar os recursos de análise de imagem do Azure AI Vision com um recurso multisserviço de **serviços de IA do Azure**. Se ainda não o fez, crie um recurso de **serviços de IA do Azure** na sua assinatura do Azure.
+
+1. Em outra guia do navegador, abra o portal do Azure em https://portal.azure.com , entrando com a conta da Microsoft associada à sua assinatura do Azure.
+2. Clique no botão **＋Criar um recurso** e pesquise os serviços de IA do Azure . Selecione criar um plano de serviços de IA do Azure . Você será levado a uma página para criar um recurso de serviços de IA do Azure. Configure-o com as seguintes configurações:
+    Assinatura : sua assinatura do Azure .
+    Grupo de recursos : selecione ou crie um grupo de recursos com um nome exclusivo .
+    Região : Leste dos EUA.
+    Nome : Insira um nome exclusivo .
+    Nível de preços : Padrão S0.
+    Ao marcar esta caixa, confirmo que li e compreendi todos os termos abaixo : Selecionado.
+3. Selecione Revisar + criar e depois Criar e aguarde a conclusão da implantação.
+
+
+Conecte seu recurso de serviço de IA do Azure ao Vision Studio
+
+Em seguida, conecte o recurso de serviço Azure AI provisionado acima ao Vision Studio.
+1. Em outra guia do navegador, navegue até Vision Studio (https://portal.vision.cognitive.azure.com/?azure-portal=true).
+2. Entre com sua conta e certifique-se de usar o mesmo diretório onde você criou seu recurso de serviços de IA do Azure.
+3. Na página inicial do Vision Studio, selecione **Visualizar todos os recursos** no título **Introdução ao Vision**.
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/15e01453-b8ae-4d6b-965a-580152ee98a0)
+
+4. Na página **Selecione um recurso para trabalhar**, passe o cursor do mouse sobre o recurso que você criou acima na lista e marque a caixa à esquerda do nome do recurso e selecione **Selecionar como recurso padrão**.
+
+**Nota**: Se o seu recurso não estiver listado, pode ser necessário atualizar a página.
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/3c6da8f9-0a82-4bfe-bd3c-53b2ec2acb40)
+
+5. Feche a página de configurações selecionando o “x” no canto superior direito da tela.
+
+
+Gerar legendas para uma imagem
+
+Agora você está pronto para usar o Vision Studio para analisar imagens tiradas por uma câmera na loja *Northwind Traders*.
+
+Vejamos a funcionalidade de legenda de imagens do Azure AI Vision. As legendas das imagens estão disponíveis por meio dos recursos **Legenda** e **Legendas densas**.
+
+1. Em um navegador da web, navegue até Vision Studio (https://portal.vision.cognitive.azure.com/?azure-portal=true).
+2. Na página inicial **Introdução ao Vision**, selecione a guia **Análise de imagem** e, em seguida, selecione o bloco **Adicionar legendas às imagens**.
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/98ab9624-71c1-4982-8537-c86cf08a02fb)
+
+3. No subtítulo **Experimente**, reconheça a política de uso de recursos lendo e marcando a caixa.
+4. Selecione https://aka.ms/mslearn-images-for-análise para baixar **image-análise.zip** . Abra a pasta no seu computador e localize o arquivo chamado **store-camera-1.jpg**; que contém a seguinte imagem:
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/4233bc16-4187-424a-94ec-805d2f3ccd35)
+
+5. Carregue a imagem **store-camera-1.jpg** arrastando-a para a caixa **Arrastar e soltar arquivos aqui** ou navegando até ela em seu sistema de arquivos.
+
+6. Observe o texto da legenda gerado, visível no painel **Atributos detectados** à direita da imagem.
+
+    A funcionalidade **Caption** fornece uma única frase em inglês legível que descreve o conteúdo da imagem.
+
+7. Em seguida, use a mesma imagem para realizar **legendas densas**. Retorne à página inicial do **Vision Studio** e, como fez antes, selecione a guia **Análise de imagem** e, em seguida, selecione o bloco **Legenda densa**.
+
+    O recurso **Dense Captions** difere do recurso **Caption** porque fornece diversas legendas legíveis para uma imagem, uma           descrevendo o conteúdo da imagem e outras, cada uma cobrindo os objetos essenciais detectados na imagem. Cada objeto        detectado inclui uma caixa delimitadora, que define as coordenadas dos pixels na imagem associada ao objeto.
+
+8. Passe o mouse sobre uma das legendas na lista de atributos **detectados** e observe o que acontece na imagem.
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/5700e332-4fc3-4edd-871b-bda762976e24)
+
+    Mova o cursor do mouse sobre as outras legendas da lista e observe como a caixa delimitadora muda na imagem para            destacar a parte da imagem usada para gerar a legenda.
+
+
+Marcando imagens
+
+O próximo recurso que você experimentará é a funcionalidade **Extrair Tags**. Extrair tags é baseado em milhares de objetos reconhecíveis, incluindo seres vivos, cenários e ações.
+
+1. Retorne à página inicial do Vision Studio e selecione o bloco Extrair tags comuns de imagens na guia Análise de imagem .
+2. Em Escolha o modelo que deseja experimentar , deixe selecionado Produto pré-construído vs. modelo de lacuna . Em Escolha seu idioma , selecione Inglês ou um idioma de sua preferência.
+3. Abra a pasta que contém as imagens que você baixou e localize o arquivo chamado **store-image-2.jpg**, que se parece com isto:
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/ab6abd30-9453-4192-a81b-b9cdf4c62962)
+
+4. Carregue o arquivo **store-camera-2.jpg**.
+5. Revise a lista de tags extraídas da imagem e a pontuação de confiança de cada uma no painel de atributos detectados. Aqui, a pontuação de confiança é a probabilidade de o texto do atributo detectado descrever o que realmente está na imagem. Observe na lista de tags que ela inclui não apenas objetos, mas ações, como compras , vendas e permanência .
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/7bad4d83-07f7-4956-a77d-067166218dd9)
+
+
+Detecção de objetos
+
+Nesta tarefa, você usa o recurso de **detecção de objetos** da Análise de imagem. A detecção de objetos detecta e extrai caixas delimitadoras com base em milhares de objetos e seres vivos reconhecíveis.
+
+1. Retorne à página inicial do Vision Studio e selecione o bloco **Detectar objetos comuns em imagens** na guia **Análise de imagem**.
+2. Em **Escolha o modelo que deseja experimentar**, deixe selecionado **Produto pré-construído vs. modelo de lacuna**.
+3. Abra a pasta que contém as imagens que você baixou e localize o arquivo chamado **store-camera-3.jpg**, que se parece com isto:
+
+![image](https://github.com/ThiagoMouraP/Reconhecimento-Facial-e-Transforma-o-de-Imagens-em-Dados-no-Azure-ML/assets/43223265/51cc8422-68a3-49ad-8dc9-64b7f6abdee4)
+
+4. Carregue o arquivo **store-camera-3.jpg**.
+5. Na caixa **Atributos detectados**, observe a lista de objetos detectados e suas pontuações de confiança.
+6. Passe o cursor do mouse sobre os objetos na lista Atributos detectados para destacar a caixa delimitadora do objeto na imagem.
+7. Mova o controle deslizante **Valor limite** até que um valor de 70 seja exibido à direita do controle deslizante. Observe o que acontece com os objetos da lista. O controle deslizante de limite especifica que somente objetos identificados com uma pontuação de confiança ou probabilidade maior que o limite devem ser exibidos.
+
+Limpar
+Se não pretende fazer mais exercícios, exclua todos os recursos que não precisa mais. Isso evita acumular custos desnecessários.
+
+Abra o portal do Azure e selecione o grupo de recursos que contém o recurso que você criou.
+Selecione o recurso e selecione Excluir e depois Sim para confirmar. O recurso é então excluído.
+Saber mais
+Para saber mais sobre o que você pode fazer com este serviço, consulte a página Azure AI Vision .
+
 1. Abra o portal do Azure em https://portal.azure.com e selecione o grupo de recursos que contém o recurso que você criou.
 2. Selecione o recurso e selecione Excluir e depois Sim para confirmar. O recurso é então excluído.
+   
 Saber mais
 Para saber mais sobre o que você pode fazer com este serviço, consulte a documentação do Azure AI Vision sobre reconhecimento óptico de caracteres (https://learn.microsoft.com/azure/ai-services/computer-vision/overview-ocr).
